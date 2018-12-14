@@ -1,0 +1,21 @@
+#!/bin/bash
+
+TEST=$(transmission-remote --auth user:password --list)
+
+main ()
+        {
+
+        echo "Total +1:"
+        echo "$TEST" | wc -l
+        echo "Stopped:"
+        echo "$TEST" | grep "Stopped" | wc -l
+        echo "Downloading:"
+        echo "$TEST" | grep "Downloading" | wc -l
+        echo "Finished:"
+        echo "$TEST" | grep "Finished" | wc -l
+
+        exit 0;
+
+        }
+
+main;

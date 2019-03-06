@@ -1,18 +1,22 @@
 #!/bin/bash
 
-TEST=$(transmission-remote --auth user:password --list)
+TEST=$(transmission-remote IP:PORT --auth USER:PASS --list)
 
 main ()
         {
 
-        echo "Total +1:"
-        echo "$TEST" | wc -l
-        echo "Stopped:"
-        echo "$TEST" | grep "Stopped" | wc -l
-        echo "Downloading:"
-        echo "$TEST" | grep "Downloading" | wc -l
-        echo "Finished:"
-        echo "$TEST" | grep "Finished" | wc -l
+        TOTAL=$(echo "$TEST" | wc -l)
+        ACTUAL=$(($TOTAL-1))
+        echo "Total: $ACTUAL"
+
+        STOPPED=$(echo "$TEST" | grep "Stopped" | wc -l)
+        echo "Stopped: $STOPPED"
+
+        DOWNLOADING=$(echo "$TEST" | grep "Downloading" | wc -l)
+        echo "Downloading: $DOWNLOADING"
+
+        FINISHED=$(echo "$TEST" | grep "Finished" | wc -l)
+        echo "Finished: $FINISHED"
 
         exit 0;
 
